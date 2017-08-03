@@ -2,24 +2,13 @@ import React from 'react';
 
 const buildCtx = (that) => {
   const setState = that.setState.bind(that);
-  const ctx = {
+  return {
     setState,
+    get state() { return that.state; },
+    set state(value) { setState(value); },
+    get props() { return that.props; },
+    get context() { return that.context; },
   };
-
-  Object.defineProperties(ctx, {
-    state: {
-      get: () => that.state,
-      set: setState,
-    },
-    props: {
-      get: () => that.props,
-    },
-    context: {
-      get: () => that.context,
-    },
-  });
-
-  return ctx;
 };
 
 export default (factory) => {
