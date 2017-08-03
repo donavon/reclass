@@ -29,7 +29,7 @@ const MyComponent = (ctx) => {
     setState({...});
   };
 
-  const render = (props, state context) => (
+  const render = (props, state, context) => (
     ...
     <RenderSomething onClick={clickHandler} />
   );
