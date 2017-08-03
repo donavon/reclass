@@ -8,8 +8,9 @@ TL;DR
 
 * Write React stateful components without worrying about `this` or binding methods.
 * No more `this.myMethod = this.myMethod.bind(this);`. Whatz!?
-* Write your methods in ES6 "fat arrow" style.
-* Still in `alpha`. Use at your own risk.
+* Write your methods using ES6 "fat arrow" functions.
+* A no-frill/smaller footprint alternative to
+[recompose](https://github.com/acdlite/recompose).
 
 ## Install
 ```bash
