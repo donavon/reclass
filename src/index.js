@@ -15,8 +15,8 @@ export default (factory) => {
   const Component = class extends React.Component {
     static displayName = factory.name;
 
-    constructor(props) {
-      super(props);
+    constructor(...args) {
+      super(...args);
       const ctx = buildCtx(this);
       const { render, ...properties } = factory(ctx);
       Object.assign(this, properties);
