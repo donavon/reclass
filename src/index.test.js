@@ -11,6 +11,7 @@ const MyComponent = (that) => {
 
   return {
     state,
+    otherPro: 'otherPro',
     render: (renderProps, renderState, renderContext) => {
       myComponentProps = renderProps;
       myComponentState = renderState;
@@ -19,15 +20,24 @@ const MyComponent = (that) => {
     },
   };
 };
+MyComponent.staticProp = 'hello';
 
 describe('reclass', () => {
   test('is a function', () => {
     expect(typeof reclass).toBe('function');
   });
-  describe('when passed a component', () => {
+  describe('when passed a factory component', () => {
     const Reclassed = reclass(MyComponent);
     test('returns a class', () => {
       expect(typeof Reclassed).toBe('function');
+    });
+    test('has a "displayName" static property', () => {
+      expect('displayName' in Reclassed).toBe(true);
+      expect(Reclassed.displayName).toBe('MyComponent');
+    });
+    test('has all static properties of the wrapped component', () => {
+      expect('staticProp' in Reclassed).toBe(true);
+      expect(Reclassed.staticProp).toBe(MyComponent.staticProp);
     });
     describe('that when instanciated with MyComponent', () => {
       const props = {};
@@ -36,9 +46,6 @@ describe('reclass', () => {
       test('returns an instance', () => {
         expect(typeof instance).toBe('object');
       });
-      // test('with the ', () => {
-      //   expect(instance).toEqual(keys);
-      // });
       describe('MyComponent is called with ctx', () => {
         test('ctx is an object', () => {
           expect(typeof ctx).toBe('object');
@@ -83,6 +90,12 @@ describe('reclass', () => {
         test('that is an object', () => {
           expect('refs' in instance).toBe(true);
           expect(typeof instance.refs).toBe('object');
+        });
+      });
+      describe('with a custom "otherPro" property', () => {
+        test('that is a string', () => {
+          expect('otherPro' in instance).toBe(true);
+          expect(instance.otherPro).toBe('otherPro');
         });
       });
       describe('with a "render" key', () => {
