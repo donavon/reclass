@@ -1,6 +1,6 @@
 {
   "name": "reclass",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Write React stateful components without worrying about this.",
   "main": "./lib/index.js",
   "scripts": {
